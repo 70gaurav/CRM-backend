@@ -1,165 +1,29 @@
 import axios from "axios";
 import { config } from "dotenv";
+import Store from "../models/store.js";
+import Customer from "../models/customer.js";
+import StoreSettings from "../models/storeSettings.js";
+import CustomerEmail from "../models/customerEmail.js";
+
 config();
 
-
-const dummyData = {
-  "customers": [
-    {
-      "Id": 1,
-      "name": "John Doe",
-      "totalSpent": 250.75,
-      "emailid": "mailto:johndoe@example.com",
-      "phone": "3333333",
-      "emailStatus": "Subscribed", 
-      "firstSeen": "2012-04-23T18:25:43.511Z", 
-      "signedUp": "2012-04-23T18:25:43.511Z", 
-      "firstContacted": "2012-04-23T18:25:43.511Z", 
-      "firstOrderPlaced": "2012-04-23T18:25:43.511Z", 
-      "lastOrderPlaced": "2012-04-23T18:25:43.511Z", 
-      "totalOrderValue": 2500, 
-      "totalOrderQuantity": 20,
-      "orderSummaries": [
-        {
-          "orderDate": "2012-04-23T18:25:43.511Z",
-          "orderId": "#101",
-          "orderStatus": "Completed"
-        },
-        {
-          "orderDate": "2012-04-23T18:25:43.511Z",
-          "orderId": "#101",
-          "orderStatus": "Completed"
-        }
-      ]
-    },
-    {
-      "Id": 2,
-      "name": "Jane Doe",
-      "totalSpent": 2500.75,
-      "emailid": "mailto:janedoe@example.com",
-      "phone": "659898",
-      "emailStatus": "Subscribed", 
-      "firstSeen": "2013-04-23T18:25:43.511Z", 
-      "signedUp": "2013-04-23T18:25:43.511Z", 
-      "firstContacted": "2013-04-23T18:25:43.511Z", 
-      "firstOrderPlaced": "2013-04-23T18:25:43.511Z", 
-      "lastOrderPlaced": "2013-04-23T18:25:43.511Z", 
-      "totalOrderValue": 3500, 
-      "totalOrderQuantity": 50,
-      "orderSummaries": [
-        {
-          "orderDate": "2013-04-23T18:25:43.511Z",
-          "orderId": "#103",
-          "orderStatus": "Completed"
-        },
-        {
-          "orderDate": "2013-04-23T18:25:43.511Z",
-          "orderId": "#104",
-          "orderStatus": "Completed"
-        }
-      ]
-    },
-    {
-      "Id": 3,
-      "name": "John Martin",
-      "totalSpent": 2770.75,
-      "emailid": "mailto:john@example.com",
-      "phone": "6598556",
-      "emailStatus": "Subscribed", 
-      "firstSeen": "2014-04-23T18:25:43.511Z", 
-      "signedUp": "2014-04-23T18:25:43.511Z", 
-      "firstContacted": "2014-04-23T18:25:43.511Z", 
-      "firstOrderPlaced": "2014-04-23T18:25:43.511Z", 
-      "lastOrderPlaced": "2014-04-23T18:25:43.511Z", 
-      "totalOrderValue": 700, 
-      "totalOrderQuantity": 5,
-      "orderSummaries": [
-        {
-          "orderDate": "2014-04-23T18:25:43.511Z",
-          "orderId": "#107",
-          "orderStatus": "Completed"
-        },
-        {
-          "orderDate": "2014-04-23T18:25:43.511Z",
-          "orderId": "#108",
-          "orderStatus": "Completed"
-        }
-      ]
-    },
-    {
-      "Id": 4,
-      "name": "William White",
-      "totalSpent": 2300.75,
-      "emailid": "mailto:will@example.com",
-      "phone": "659885",
-      "emailStatus": "Subscribed", 
-      "firstSeen": "2015-04-23T18:25:43.511Z", 
-      "signedUp": "2015-04-23T18:25:43.511Z", 
-      "firstContacted": "2015-04-23T18:25:43.511Z", 
-      "firstOrderPlaced": "2015-04-23T18:25:43.511Z", 
-      "lastOrderPlaced": "2015-04-23T18:25:43.511Z", 
-      "totalOrderValue": 3700, 
-      "totalOrderQuantity": 8,
-      "orderSummaries": [
-        {
-          "orderDate": "2015-04-23T18:25:43.511Z",
-          "orderId": "#109",
-          "orderStatus": "Completed"
-        },
-        {
-          "orderDate": "2015-04-23T18:25:43.511Z",
-          "orderId": "#110",
-          "orderStatus": "Completed"
-        }
-      ]
-    },
-    {
-      "Id": 5,
-      "name": "Jack Leach",
-      "totalSpent": 2800.75,
-      "emailid": "mailto:janedoe@example.com",
-      "phone": "659898",
-      "emailStatus": "Subscribed", 
-      "firstSeen": "2016-04-23T18:25:43.511Z", 
-      "signedUp": "2016-04-23T18:25:43.511Z", 
-      "firstContacted": "2016-04-23T18:25:43.511Z", 
-      "firstOrderPlaced": "2016-04-23T18:25:43.511Z", 
-      "lastOrderPlaced": "2016-04-23T18:25:43.511Z", 
-      "totalOrderValue": 4500, 
-      "totalOrderQuantity": 35,
-      "orderSummaries": [
-        {
-          "orderDate": "2016-04-23T18:25:43.511Z",
-          "orderId": "#111",
-          "orderStatus": "Completed"
-        },
-        {
-          "orderDate": "2016-04-23T18:25:43.511Z",
-          "orderId": "#112",
-          "orderStatus": "Completed"
-        }
-      ]
-    }
-  ]
-}
-
-
-export const getCustomersData = async (req, res) => {
-
+export const getCustomers = async (req, res) => {
   try {
-    return res
-      .status(200)
-      .send({ message: "request success", data: dummyData });
+    const data = await Customer.findAll();
+
+    if (data.length < 1) {
+      res.status(200).send({ message: "No customer found" });
+    }
+
+    return res.status(200).send({ message: "request success", data: data });
   } catch (error) {
     return res.status(500).send({
-      message : "Internal server error"
-    })
-    
+      message: "Internal server error",
+    });
   }
 };
 
-
-// export const getCustomers = async (req, res) => {
+// export const saveCustomers = async (req, res) => {
 //   const url = `https://api.bigcommerce.com/stores/${process.env.STORE_HASH}/v3/customers`;
 
 //   try {
@@ -171,12 +35,33 @@ export const getCustomersData = async (req, res) => {
 //       },
 //     });
 
-//     const customers = response.data.data;
-//     console.log(customers);
+//     const data = response.data.data;
 
-//     return res
-//       .status(200)
-//       .send({ message: "request success", data: customers });
+//     const promises = data.map(async (customerData) => {
+//       const [customer, created] = await Customer.findOrCreate({
+//         where: { CustomerId: customerData.id },
+//         defaults: {
+//           CustomerId: customerData.id,
+//           FirstName: customerData.first_name,
+//           LastName: customerData.last_name,
+//           Phone: customerData.phone,
+//           Email: customerData.email,
+//           Company: customerData.company ? customerData.company : null,
+//           DateCreated: customerData.date_created,
+//           DateModified: customerData.date_modified,
+//         },
+//       });
+
+//       return {
+//         id: customer.id,
+//         created: created,
+//       };
+//     });
+
+//     const results = await Promise.all(promises);
+//     console.log(results);
+
+//     return res.status(200).send({ message: "request success", data: data });
 //   } catch (error) {
 //     console.error(
 //       `Error fetching customers: ${
