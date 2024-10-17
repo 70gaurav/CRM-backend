@@ -16,6 +16,6 @@ export const addStore = async (req, res) => {
     res.status(200).send({ message: "store added", data: data });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({ message: "Internal server error" });
+    return res.status(500).send({ message: error });
   }
 };

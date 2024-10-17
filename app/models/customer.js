@@ -4,10 +4,14 @@ import { DataTypes } from "sequelize";
 const Customer = sequelize.define(
   "customers",
   {
+    Id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+    },
     CustomerId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
       allowNull: false,
     },
     StoreId: {
@@ -22,30 +26,66 @@ const Customer = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Email: {
+    EmailId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     Phone: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     Company: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    OrderValue: {
+    EmailStatus: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    DateCreated: {
-      type: DataTypes.DATE,
-      allowNull: false,
+    Country: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
-    DateModified: {
+    TotalOrderPlaced: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
+    TotalOrderValue: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    TotalOrderQuantity: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    FirstOrderPlaced: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    LastOrderPlaced: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    FirstContacted: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    FirstSeenDate: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    SignedUp: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    // DateCreated: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    // },
+    // DateModified: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false,
+    // },
   },
   {
     tableName: "customers",

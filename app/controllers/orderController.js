@@ -46,6 +46,6 @@ export const getOrders = async (req, res) => {
 
     return res.status(200).send({ message: "No orders found" });
   } catch (error) {
-    console.log(error);
+    return res.status(500).send({ message: "Internal server error" });
   }
 };
