@@ -3,6 +3,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import router from "./app/routes/api.js";
 import sequelize from "./app/models/index.js";
+import logger from "./app/lib/logger.js";
 
 config();
 

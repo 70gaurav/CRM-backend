@@ -1,45 +1,37 @@
 import sequelize from "./index.js";
 import { DataTypes } from "sequelize";
 
-const StoreSettings = sequelize.define(
-  "storeSettings",
+const CustomerEmail = sequelize.define(
+  "customerEmails",
   {
-    SettingsId: {
+    EmailId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    StoreId: {
+    CustomerId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    SMTP: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    IMAP: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    UserEmailId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    Password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    LastFetchedDate: {
-      type: DataTypes.DATE,
       allowNull: true,
+    },
+    Subject: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    DateTime: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    Content: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
-    tableName: "storeSettings",
+    tableName: "customerEmails",
     createdAt: "CreatedAt",
     updatedAt: "UpdatedAt",
   }
 );
 
-export default StoreSettings;
+export default CustomerEmail;

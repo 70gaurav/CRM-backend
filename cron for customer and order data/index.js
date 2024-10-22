@@ -2,6 +2,7 @@ import axios from "axios";
 import sequelize from "./models/index.js";
 import Store from "./models/store.js";
 import Customer from "./models/customer.js";
+import logger from "./lib/logger.js";
 
 export const saveCustomers = async () => {
   try {
@@ -24,7 +25,7 @@ export const saveCustomers = async () => {
 
         customers = customersResponse.data.data;
       } catch (error) {
-        console.error(
+        logger.error(
           `Error fetching customers for store ${store.StoreHash}: ${error.message}`
         );
         continue; // Skip to the next store
@@ -49,7 +50,7 @@ export const saveCustomers = async () => {
           orders = ordersResponse.data;
           console.log("orders", orders);
         } catch (error) {
-          console.error(
+          logger.error(
             `Error fetching orders for customer ${customerData.id} in store ${store.StoreHash}: ${error.message}`
           );
           orders = [];
@@ -146,9 +147,9 @@ export const saveCustomers = async () => {
       allResults.push(...storeResults);
     }
 
-    console.log(allResults);
+    logger.info(allResults);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 

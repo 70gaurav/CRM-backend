@@ -1,6 +1,7 @@
 import axios from "axios";
 import Store from "../models/store.js";
 import Customer from "../models/customer.js";
+import logger from "../lib/logger.js";
 
 //get orders by customer id
 export const getOrders = async (req, res) => {
@@ -46,6 +47,7 @@ export const getOrders = async (req, res) => {
 
     return res.status(200).send({ message: "No orders found" });
   } catch (error) {
+    logger.error("error in function getOrders", error)
     return res.status(500).send({ message: "Internal server error" });
   }
 };

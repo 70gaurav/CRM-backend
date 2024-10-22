@@ -1,7 +1,8 @@
 import express from "express";
+import { addStoreValidation, addStoreSettingsValidation } from "../middlewares/validators/storeValidator.js";
 const router = express.Router();
 
-import { addStore } from "../controllers/storeController.js";
+import { addStore, addStoreSettings } from "../controllers/storeController.js";
 import {
   getCustomers,
   getCustomerById,
@@ -9,7 +10,10 @@ import {
 import { getOrders } from "../controllers/orderController.js";
 
 //add store information
-router.post("/StoreImapDetails", addStore);
+router.post("/StoreImapDetails", addStoreValidation, addStore);
+
+//add store settings
+router.post("/StoreSettings", addStoreSettingsValidation, addStoreSettings);
 
 //get customers list
 router.get("/CustomerList/:storeId", getCustomers);

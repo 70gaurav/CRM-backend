@@ -1,6 +1,5 @@
 import { Sequelize } from "sequelize";
 import { config } from "dotenv";
-import logger from "../lib/logger.js"
 config();
 
 const sequelize = new Sequelize(
@@ -16,9 +15,9 @@ const sequelize = new Sequelize(
 const testConnection = async () => {
   try {
     await sequelize.authenticate();
-    logger.info("Connection to PostgreSQL has been established successfully.")
+    console.log("Connection to PostgreSQL has been established successfully.");
   } catch (error) {
-    logger.error("Unable to connect to the database:", error);
+    console.error("Unable to connect to the database:", error);
   }
 };
 

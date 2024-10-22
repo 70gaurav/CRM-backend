@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import Customer from "../models/customer.js";
 import Store from "../models/store.js";
+import logger from "../lib/logger.js";
 
 config();
 
@@ -27,6 +28,7 @@ export const getCustomers = async (req, res) => {
 
     return res.status(200).send({ message: "request success", data: data });
   } catch (error) {
+    logger.error("error in function getCustomers", error);
     return res.status(500).send({
       message: error,
     });
@@ -50,6 +52,7 @@ export const getCustomerById = async (req, res) => {
       .status(200)
       .send({ message: "request success", data: customerData });
   } catch (error) {
+    logger.error("error in function getCustomerById", error);
     return res.status(500).send({ message: error });
   }
 };
