@@ -18,9 +18,9 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
       }
 
       const searchCriteria = lastFetchedDate
-        ? ["ALL", ["SINCE", lastFetchedDate]]
+        ? [ ["SINCE", lastFetchedDate]]
         : ["ALL"];
-
+       console.log("search criteria",searchCriteria)
       imap.search(searchCriteria, (err, results) => {
         if (err) {
           console.error(`Error searching ${folder}:`, err);
@@ -91,23 +91,29 @@ const processStoreEmails = async (store) => {
   return new Promise((resolve, reject) => {
     imap.once("ready", async () => {
       try {
-        // Fetch LastFetchedDate and convert it to a Date object
+        // Fetch LastFetchedDate 
         const lastFetchedDate = store.LastFetchedDate
           ? store.LastFetchedDate
           : null;
-
+          const dateInUTC = new Date(lastFetchedDate);
+          
+          // Convert to IST
+          const istOffset = 5.5 * 60 * 60 * 1000;
+          const dateInIST = new Date(dateInUTC.getTime() + istOffset);
+          
+         
         // Fetch emails from Inbox
         const inboxEmails = await fetchEmailsFromFolder(
           imap,
           "INBOX",
-          lastFetchedDate
+          dateInIST
         );
 
         // Fetch emails from Sent folder
         const sentEmails = await fetchEmailsFromFolder(
           imap,
           "SENT ITEMS",
-          lastFetchedDate
+          dateInIST
         );
 
         // Process Inbox emails (check 'from' email)
