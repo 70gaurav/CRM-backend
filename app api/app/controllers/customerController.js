@@ -45,7 +45,14 @@ export const getCustomerById = async (req, res) => {
     const customerData = await Customer.findOne({
       where: { Id: customerId },
       attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
-      // include: [{ model: CustomerEmail, exclude: ["CreatedAt", "UpdatedAt"] }],
+      include: [
+        {
+          model: CustomerEmail,
+          foreignKey: "CustomerId",
+          required: false,
+          exclude: ["CreatedAt", "UpdatedAt"],
+        },
+      ],
     });
 
     if (!customerData) {

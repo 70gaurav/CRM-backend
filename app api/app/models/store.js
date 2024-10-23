@@ -15,7 +15,7 @@ const Store = sequelize.define(
       allowNull: false,
     },
     ClientId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     StoreHash: {

@@ -10,7 +10,8 @@ db.CustomerEmail = CustomerEmail;
 db.Store = Store;
 db.StoreSettings = StoreSettings;
 
-// db.CustomerEmail.belongsTo(db.Customer, { foreignKey: "Id" });
-// db.Customer.hasMany(db.CustomerEmail, { foreignKey: "CustomerId" });
+db.CustomerEmail.belongsTo(db.Customer, { foreignKey: "CustomerId" });
+db.Customer.hasMany(db.CustomerEmail, { foreignKey: "CustomerId" });
+
 
 export default db;

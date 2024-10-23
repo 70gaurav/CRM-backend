@@ -1,5 +1,6 @@
 import sequelize from "./index.js";
 import { DataTypes } from "sequelize";
+import Customer from "./customer.js";
 
 const CustomerEmail = sequelize.define(
   "customerEmails",
@@ -13,6 +14,10 @@ const CustomerEmail = sequelize.define(
     CustomerId: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      references: {
+        model: Customer, 
+        key: 'Id',
+      },
     },
     Subject: {
       type: DataTypes.STRING,

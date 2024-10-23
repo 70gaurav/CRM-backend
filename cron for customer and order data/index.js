@@ -106,6 +106,7 @@ export const saveCustomers = async () => {
             FirstOrderPlaced: firstOrderDate,
             LastOrderPlaced: lastOrderDate,
             TotalOrderQuantity: totalOrderquantity,
+            StoreId: store.StoreId,
           },
         });
 

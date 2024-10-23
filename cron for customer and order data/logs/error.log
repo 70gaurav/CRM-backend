@@ -2,3 +2,7 @@
 {"level":"error","message":"Error fetching customers for store ABCDEF: Request failed with status code 404","timestamp":"2024-10-21T07:25:35.744Z"}
 {"level":"error","message":"Error fetching customers for store ABCDEF: Request failed with status code 404","timestamp":"2024-10-21T07:25:53.124Z"}
 {"level":"error","message":"Error fetching customers for store ABCDEF: Request failed with status code 404","timestamp":"2024-10-21T07:26:30.833Z"}
+{"level":"error","message":"Error fetching customers for store ABCDEF: Request failed with status code 404","timestamp":"2024-10-23T09:20:10.943Z"}
+{"level":"error","message":"Error fetching customers for store ABCDEF: Request failed with status code 404","timestamp":"2024-10-23T09:20:11.300Z"}
+{"level":"error","message":"Error fetching customers for store ABCDEF: Request failed with status code 404","timestamp":"2024-10-23T09:25:30.503Z"}
+{"level":"error","message":"Error fetching customers for store ABCDEF: Request failed with status code 404","timestamp":"2024-10-23T09:25:30.854Z"}

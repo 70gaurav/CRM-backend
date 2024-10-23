@@ -7,11 +7,12 @@ const Customer = sequelize.define(
     Id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
+      primaryKey: true,
       allowNull: false,
     },
     CustomerId: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
+     
       allowNull: false,
     },
     StoreId: {

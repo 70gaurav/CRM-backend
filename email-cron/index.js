@@ -10,6 +10,7 @@ const getEmailAddress = (input) => {
 };
 
 const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
+  console.log("lastfetchedDate",lastFetchedDate)
   return new Promise((resolve, reject) => {
     imap.openBox(folder, false, (err) => {
       if (err) {
@@ -18,9 +19,9 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
       }
 
       const searchCriteria = lastFetchedDate
-        ? [ ["SINCE", lastFetchedDate]]
+        ? [["SINCE", lastFetchedDate]]
         : ["ALL"];
-       console.log("search criteria",searchCriteria)
+      console.log("search criteria", searchCriteria);
       imap.search(searchCriteria, (err, results) => {
         if (err) {
           console.error(`Error searching ${folder}:`, err);
@@ -91,29 +92,34 @@ const processStoreEmails = async (store) => {
   return new Promise((resolve, reject) => {
     imap.once("ready", async () => {
       try {
-        // Fetch LastFetchedDate 
-        const lastFetchedDate = store.LastFetchedDate
+        console.log("storeDate", store.LastFetchedDate)
+        // Fetch LastFetchedDate
+        const fetchedDate = store.LastFetchedDate
           ? store.LastFetchedDate
           : null;
-          const dateInUTC = new Date(lastFetchedDate);
-          
-          // Convert to IST
-          const istOffset = 5.5 * 60 * 60 * 1000;
-          const dateInIST = new Date(dateInUTC.getTime() + istOffset);
-          
-         
+
+        const dateInUTC = new Date(fetchedDate);
+
+        // Convert to IST
+        const istOffset = 5.5 * 60 * 60 * 1000;
+        const dateInIST = new Date(dateInUTC.getTime() + istOffset);
+
+       const lastFetchedDate = store.LastFetchedDate
+       ? dateInIST
+       : null;
+      console.log("lastFetcheddate", lastFetchedDate)
         // Fetch emails from Inbox
         const inboxEmails = await fetchEmailsFromFolder(
           imap,
           "INBOX",
-          dateInIST
+          lastFetchedDate
         );
 
         // Fetch emails from Sent folder
         const sentEmails = await fetchEmailsFromFolder(
           imap,
           "SENT ITEMS",
-          dateInIST
+          lastFetchedDate
         );
 
         // Process Inbox emails (check 'from' email)
