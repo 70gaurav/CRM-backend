@@ -53,6 +53,7 @@ export const getCustomerById = async (req, res) => {
           exclude: ["CreatedAt", "UpdatedAt"],
         },
       ],
+      order: [[CustomerEmail, "DateTime", "DESC"]],
     });
 
     if (!customerData) {
@@ -64,6 +65,7 @@ export const getCustomerById = async (req, res) => {
       .send({ message: "request success", data: customerData });
   } catch (error) {
     logger.error("error in function getCustomerById", error);
+    console.log(error);
     return res.status(500).send({ message: error });
   }
 };

@@ -3,6 +3,7 @@ import { simpleParser } from "mailparser";
 import Customer from "./models/customer.js";
 import CustomerEmail from "./models/customerEmail.js";
 import StoreSettings from "./models/storeSettings.js";
+import logger from "./lib/logger.js";
 
 const getEmailAddress = (input) => {
   const match = input.match(/<([^>]+)>/);
@@ -10,41 +11,50 @@ const getEmailAddress = (input) => {
 };
 
 const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
-  console.log("lastfetchedDate",lastFetchedDate)
   return new Promise((resolve, reject) => {
     imap.openBox(folder, false, (err) => {
       if (err) {
-        console.error(`Error opening ${folder} for fetching:`, err);
+        logger.error(`Error opening ${folder} for fetching:`, err);
         return reject(err);
       }
 
       const searchCriteria = lastFetchedDate
         ? [["SINCE", lastFetchedDate]]
         : ["ALL"];
-      console.log("search criteria", searchCriteria);
+
       imap.search(searchCriteria, (err, results) => {
         if (err) {
-          console.error(`Error searching ${folder}:`, err);
+          logger.error(`Error searching ${folder}:`, err);
           return reject(err);
         }
-
+        console.log("results", results);
         if (results.length === 0) {
-          console.log(`No emails found in ${folder}.`);
+          logger.info(`No emails found in ${folder}.`);
           return resolve([]);
         }
 
         const f = imap.fetch(results, { bodies: "" });
+        // const f = imap.fetch(results, { bodies: "", struct: true, uid: true });
         const emails = [];
 
         f.on("message", (msg) => {
+          // let emailUID;
+
+          // // Get UID from message attributes
+          // msg.on("attributes", (attrs) => {
+          //   emailUID = attrs.uid; // Store the UID from attributes
+          // });
+
+          // console.log("emailUID", emailUID);
+
           msg.on("body", (stream) => {
             simpleParser(stream, (err, parsed) => {
               if (err) {
-                console.error(`Error parsing email from ${folder}:`, err);
+                logger.error(`Error parsing email from ${folder}:`, err);
                 return;
               }
-
               const emailData = {
+                
                 from: getEmailAddress(parsed.from.text.trim()),
                 to: getEmailAddress(parsed.to.text.trim()),
                 subject: parsed.subject || "No Subject",
@@ -54,19 +64,18 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
                   .replace(/\s+/g, " ")
                   .trim(),
               };
-              console.log();
               emails.push(emailData);
             });
           });
         });
 
         f.once("end", () => {
-          console.log(`Done fetching emails from ${folder}.`);
+          logger.info(`Done fetching emails from ${folder}.`);
           resolve(emails);
         });
 
         f.once("error", (ex) => {
-          console.error(`Fetch error for ${folder}:`, ex);
+          logger.error(`Fetch error for ${folder}:`, ex);
           reject(ex);
         });
       });
@@ -92,22 +101,19 @@ const processStoreEmails = async (store) => {
   return new Promise((resolve, reject) => {
     imap.once("ready", async () => {
       try {
-        console.log("storeDate", store.LastFetchedDate)
         // Fetch LastFetchedDate
         const fetchedDate = store.LastFetchedDate
           ? store.LastFetchedDate
           : null;
-
+        console.log("fetchedDate", fetchedDate);
         const dateInUTC = new Date(fetchedDate);
 
         // Convert to IST
         const istOffset = 5.5 * 60 * 60 * 1000;
         const dateInIST = new Date(dateInUTC.getTime() + istOffset);
 
-       const lastFetchedDate = store.LastFetchedDate
-       ? dateInIST
-       : null;
-      console.log("lastFetcheddate", lastFetchedDate)
+        const lastFetchedDate = store.LastFetchedDate ? dateInIST : null;
+        console.log("lastfetchedDate", lastFetchedDate);
         // Fetch emails from Inbox
         const inboxEmails = await fetchEmailsFromFolder(
           imap,
@@ -138,11 +144,11 @@ const processStoreEmails = async (store) => {
               DateTime: emailData.date,
             });
 
-            console.log(
+            logger.info(
               `Email saved for customer ID: ${customer.Id} from inbox.`
             );
           } else {
-            console.log(
+            logger.info(
               `No matching customer found for inbox email in store ${store.SettingsId}:`,
               emailData.from
             );
@@ -165,11 +171,11 @@ const processStoreEmails = async (store) => {
               DateTime: emailData.date,
             });
 
-            console.log(
+            logger.info(
               `Email saved for customer ID: ${customer.Id} from sent emails.`
             );
           } else {
-            console.log(
+            logger.info(
               `No matching customer found for sent email in store ${store.SettingsId}:`,
               emailData.to
             );
@@ -183,7 +189,7 @@ const processStoreEmails = async (store) => {
         imap.end();
         resolve();
       } catch (error) {
-        console.error(
+        logger.error(
           `Error processing emails for store ${store.SettingsId}:`,
           error
         );
@@ -193,12 +199,12 @@ const processStoreEmails = async (store) => {
     });
 
     imap.once("error", (err) => {
-      console.error(`IMAP Error for store ${store.SettingsId}:`, err);
+      logger.error(`IMAP Error for store ${store.SettingsId}:`, err);
       reject(err);
     });
 
     imap.once("end", () => {
-      console.log(`Connection ended for store ${store.SettingsId}`);
+      logger.info(`Connection ended for store ${store.SettingsId}`);
     });
 
     imap.connect();
@@ -213,14 +219,14 @@ const getEmails = async () => {
       try {
         await processStoreEmails(setting);
       } catch (error) {
-        console.error(
+        logger.error(
           `Failed to process emails for store ${setting.SettingsId}:`,
           error
         );
       }
     }
   } catch (ex) {
-    console.error("An error occurred while fetching stores:", ex);
+    logger.error("An error occurred while fetching stores:", ex);
   }
 };
 

@@ -1,0 +1,220 @@
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:45:33.587Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:45:33.751Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:45:33.772Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:45:33.844Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:49:40.825Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:49:40.998Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:49:41.017Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:49:41.023Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:49:41.087Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:51:45.280Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:51:45.455Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:51:45.474Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:51:45.478Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:51:45.540Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:52:56.841Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:52:57.037Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:52:57.055Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:52:57.060Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:52:57.135Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:53:22.833Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:53:23.002Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:23.020Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:23.026Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:53:23.118Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:53:25.728Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:53:25.880Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:25.906Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:25.911Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:53:25.972Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:53:32.253Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:53:32.427Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:32.461Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:32.465Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:53:32.528Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:53:42.047Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:53:42.218Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:42.239Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:42.242Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:53:42.315Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:53:45.004Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:53:45.273Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:45.304Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:45.315Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:53:45.377Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:53:57.652Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:53:57.828Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:57.846Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:53:57.853Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:53:57.913Z"}
+{"level":"error","message":"Error processing emails for store 2: Cannot access 'lastFetchedDate' before initialization","stack":"ReferenceError: Cannot access 'lastFetchedDate' before initialization\n    at Connection.<anonymous> (file:///D:/CRM-backend/email-cron/index.js:98:42)\n    at Object.onceWrapper (node:events:633:28)\n    at Connection.emit (node:events:519:28)\n    at Connection.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1623:12)\n    at Connection._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1535:22)\n    at Parser.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:194:10)\n    at Parser.emit (node:events:519:28)\n    at Parser._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:175:10)\n    at Parser._parse (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:139:16)\n    at Parser._tryread (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:82:15)","timestamp":"2024-10-23T11:53:59.154Z"}
+{"level":"error","message":"Failed to process emails for store 2: Cannot access 'lastFetchedDate' before initialization","stack":"ReferenceError: Cannot access 'lastFetchedDate' before initialization\n    at Connection.<anonymous> (file:///D:/CRM-backend/email-cron/index.js:98:42)\n    at Object.onceWrapper (node:events:633:28)\n    at Connection.emit (node:events:519:28)\n    at Connection.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1623:12)\n    at Connection._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1535:22)\n    at Parser.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:194:10)\n    at Parser.emit (node:events:519:28)\n    at Parser._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:175:10)\n    at Parser._parse (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:139:16)\n    at Parser._tryread (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:82:15)","timestamp":"2024-10-23T11:53:59.162Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:53:59.190Z"}
+{"level":"error","message":"Error processing emails for store 2: lastfetchedDate is not defined","stack":"ReferenceError: lastfetchedDate is not defined\n    at Connection.<anonymous> (file:///D:/CRM-backend/email-cron/index.js:98:42)\n    at Object.onceWrapper (node:events:633:28)\n    at Connection.emit (node:events:519:28)\n    at Connection.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1623:12)\n    at Connection._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1535:22)\n    at Parser.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:194:10)\n    at Parser.emit (node:events:519:28)\n    at Parser._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:175:10)\n    at Parser._parse (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:139:16)\n    at Parser._tryread (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:82:15)","timestamp":"2024-10-23T11:54:04.152Z"}
+{"level":"error","message":"Failed to process emails for store 2: lastfetchedDate is not defined","stack":"ReferenceError: lastfetchedDate is not defined\n    at Connection.<anonymous> (file:///D:/CRM-backend/email-cron/index.js:98:42)\n    at Object.onceWrapper (node:events:633:28)\n    at Connection.emit (node:events:519:28)\n    at Connection.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1623:12)\n    at Connection._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:1535:22)\n    at Parser.<anonymous> (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Connection.js:194:10)\n    at Parser.emit (node:events:519:28)\n    at Parser._resTagged (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:175:10)\n    at Parser._parse (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:139:16)\n    at Parser._tryread (D:\\CRM-backend\\email-cron\\node_modules\\imap\\lib\\Parser.js:82:15)","timestamp":"2024-10-23T11:54:04.157Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:54:04.197Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:54:06.329Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:54:06.530Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:06.549Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:06.561Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:54:06.646Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:54:10.863Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:54:11.027Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:11.052Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:11.056Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:54:11.115Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:54:25.713Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:54:25.922Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:25.951Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:25.958Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:54:26.029Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:54:32.621Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:54:32.835Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:32.866Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:32.870Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:54:32.935Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T11:54:37.624Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T11:54:37.798Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:37.817Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T11:54:37.822Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T11:54:37.887Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:15:59.192Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:15:59.413Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:15:59.454Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:15:59.459Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:15:59.527Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:17:24.237Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:17:24.382Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:17:24.410Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:17:24.414Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:17:24.474Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:17:42.689Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:17:42.862Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:17:42.878Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:17:42.881Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:17:42.956Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:18:14.357Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:18:14.517Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:14.530Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:14.533Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:18:14.599Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:18:21.024Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:18:21.216Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:21.235Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:21.239Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:18:21.301Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:18:31.007Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:18:31.157Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:31.175Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:31.179Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:18:31.246Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:18:35.147Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:18:35.350Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:35.374Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:35.380Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:18:35.442Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:18:38.860Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:18:39.071Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:39.086Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:18:39.090Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:18:39.162Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:19:15.178Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:19:15.343Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:19:15.358Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:19:15.362Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:19:15.439Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:21:12.267Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:21:12.424Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:21:12.444Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:21:12.448Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:21:12.520Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:22:13.935Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:22:14.096Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:22:14.110Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:22:14.113Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:22:14.190Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:22:38.833Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:22:38.977Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:22:39.000Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:22:39.003Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:22:39.063Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:22:44.199Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:22:44.673Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:22:44.698Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:22:44.702Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:22:44.762Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:22:59.898Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:00.090Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:00.117Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:00.121Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:00.194Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:14.184Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:14.358Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:14.376Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:14.381Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:14.441Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:17.942Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:18.114Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:18.129Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:18.132Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:18.209Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:23.089Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:23.260Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:23.280Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:23.283Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:23.360Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:24.889Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:25.036Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:25.056Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:25.059Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:25.121Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:26.623Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:26.803Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:26.823Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:26.828Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:26.896Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:29.401Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:29.562Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:29.583Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:29.589Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:29.652Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:32.871Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:33.013Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:33.029Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:33.034Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:33.100Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:35.082Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:35.224Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:35.246Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:35.250Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:35.309Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:38.803Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:38.988Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:39.007Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:39.011Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:39.073Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:52.286Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:52.451Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:52.467Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:52.471Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:52.533Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:23:55.967Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:23:56.157Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:56.184Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:23:56.189Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:23:56.257Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:24:00.643Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:24:00.809Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:00.825Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:00.828Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:24:00.911Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:24:04.218Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:24:04.378Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:04.392Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:04.397Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:24:04.471Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-23T12:24:10.994Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-23T12:24:11.163Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:11.184Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:11.189Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:24:11.253Z"}
