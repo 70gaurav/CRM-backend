@@ -1,7 +1,10 @@
 import { config } from "dotenv";
-import Customer from "../models/customer.js";
-import Store from "../models/store.js";
+import db from "../models/modelAssociation.js";
 import logger from "../lib/logger.js";
+
+const Customer = db.Customer;
+const Store = db.Store;
+const CustomerEmail = db.CustomerEmail;
 
 config();
 
@@ -23,14 +26,14 @@ export const getCustomers = async (req, res) => {
     });
 
     if (data.length < 1) {
-      res.status(200).send({ message: "No customer found" });
+      return res.status(200).send({ message: "No customer found" });
     }
 
-    return res.status(200).send({ message: "request success", data: data });
+    return res.status(200).send({ message: "Request success", data: data });
   } catch (error) {
-    logger.error("error in function getCustomers", error);
+    logger.error("Error in function getCustomers", error);
     return res.status(500).send({
-      message: error,
+      message: error.message || "Internal Server Error",
     });
   }
 };
@@ -40,8 +43,9 @@ export const getCustomerById = async (req, res) => {
 
   try {
     const customerData = await Customer.findOne({
-      where: { CustomerId: customerId },
+      where: { Id: customerId },
       attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
+      // include: [{ model: CustomerEmail, exclude: ["CreatedAt", "UpdatedAt"] }],
     });
 
     if (!customerData) {
