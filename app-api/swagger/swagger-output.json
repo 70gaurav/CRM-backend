@@ -17,7 +17,7 @@
     "http"
   ],
   "paths": {
-    "/api/StoreImapDetails": {
+    "/api/StoreSettings": {
       "post": {
         "description": "",
         "parameters": [
@@ -60,7 +60,7 @@
         "tags": ["CRM API"]
       }
     },
-    "/api/StoreSettings": {
+    "/api/StoreImapDetails": {
       "post": {
         "description": "",
         "parameters": [

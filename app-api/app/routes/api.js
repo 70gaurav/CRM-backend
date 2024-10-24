@@ -10,10 +10,10 @@ import {
 import { getOrders } from "../controllers/orderController.js";
 
 //add store information
-router.post("/StoreImapDetails", addStoreValidation, addStore);
+router.post("/StoreSettings", addStoreValidation, addStore);
 
 //add store settings
-router.post("/StoreSettings", addStoreSettingsValidation, addStoreSettings);
+router.post("/StoreImapDetails", addStoreSettingsValidation, addStoreSettings);
 
 //get customers list
 router.get("/CustomerList/:storeId", getCustomers);
