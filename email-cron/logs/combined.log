@@ -218,3 +218,46 @@
 {"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:11.184Z"}
 {"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-23T12:24:11.189Z"}
 {"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-23T12:24:11.253Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"IMAP Error for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T04:54:20.603Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"Failed to process emails for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T04:54:20.605Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-24T04:54:21.192Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-24T04:54:21.365Z"}
+{"level":"info","message":"No matching customer found for inbox email in store 2:","timestamp":"2024-10-24T04:54:21.370Z"}
+{"level":"info","message":"No matching customer found for inbox email in store 2:","timestamp":"2024-10-24T04:54:21.371Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-24T04:54:21.441Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"IMAP Error for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T04:55:52.547Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"Failed to process emails for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T04:55:52.550Z"}
+{"level":"info","message":"No emails found in INBOX.","timestamp":"2024-10-24T04:55:52.952Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-24T04:55:53.098Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-24T04:55:53.175Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-24T05:00:06.566Z"}
+{"level":"info","message":"Done fetching emails from SENT ITEMS.","timestamp":"2024-10-24T05:00:06.827Z"}
+{"level":"info","message":"No matching customer found for inbox email in store 2:","timestamp":"2024-10-24T05:00:06.832Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T05:00:06.840Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T05:00:06.843Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T05:00:06.845Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T05:00:06.848Z"}
+{"level":"info","message":"No matching customer found for inbox email in store 2:","timestamp":"2024-10-24T05:00:06.849Z"}
+{"level":"info","message":"No matching customer found for sent email in store 2:","timestamp":"2024-10-24T05:00:06.850Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from sent emails.","timestamp":"2024-10-24T05:00:06.852Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-24T05:00:06.907Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"IMAP Error for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T05:00:09.548Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"Failed to process emails for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T05:00:09.549Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"IMAP Error for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T06:36:09.834Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"Failed to process emails for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T06:36:09.839Z"}
+{"level":"info","message":"No emails found in INBOX.","timestamp":"2024-10-24T06:36:10.295Z"}
+{"level":"info","message":"No emails found in SENT ITEMS.","timestamp":"2024-10-24T06:36:10.460Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-24T06:36:10.539Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"IMAP Error for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T06:37:26.495Z"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"test","level":"error","message":"Failed to process emails for store 1: getaddrinfo ENOTFOUND test","source":"socket","stack":"Error: getaddrinfo ENOTFOUND test\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)","syscall":"getaddrinfo","timestamp":"2024-10-24T06:37:26.500Z"}
+{"level":"info","message":"Done fetching emails from INBOX.","timestamp":"2024-10-24T06:37:26.999Z"}
+{"level":"info","message":"Done fetching emails from SENT ITEMS.","timestamp":"2024-10-24T06:37:27.212Z"}
+{"level":"info","message":"No matching customer found for inbox email in store 2:","timestamp":"2024-10-24T06:37:27.216Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T06:37:27.225Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T06:37:27.227Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T06:37:27.229Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from inbox.","timestamp":"2024-10-24T06:37:27.231Z"}
+{"level":"info","message":"No matching customer found for inbox email in store 2:","timestamp":"2024-10-24T06:37:27.232Z"}
+{"level":"info","message":"No matching customer found for sent email in store 2:","timestamp":"2024-10-24T06:37:27.234Z"}
+{"level":"info","message":"Email saved for customer ID: 5 from sent emails.","timestamp":"2024-10-24T06:37:27.237Z"}
+{"level":"info","message":"Connection ended for store 2","timestamp":"2024-10-24T06:37:27.296Z"}

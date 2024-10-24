@@ -18,6 +18,10 @@ const CustomerEmail = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    EmailStatus: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     DateTime: {
       type: DataTypes.DATE,
       allowNull: false,

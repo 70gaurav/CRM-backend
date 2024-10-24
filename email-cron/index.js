@@ -54,7 +54,6 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
                 return;
               }
               const emailData = {
-                
                 from: getEmailAddress(parsed.from.text.trim()),
                 to: getEmailAddress(parsed.to.text.trim()),
                 subject: parsed.subject || "No Subject",
@@ -142,6 +141,7 @@ const processStoreEmails = async (store) => {
               Subject: emailData.subject,
               Content: emailData.body,
               DateTime: emailData.date,
+              EmailStatus: "received",
             });
 
             logger.info(
@@ -169,6 +169,7 @@ const processStoreEmails = async (store) => {
               Subject: emailData.subject,
               Content: emailData.body,
               DateTime: emailData.date,
+              EmailStatus: "sent",
             });
 
             logger.info(

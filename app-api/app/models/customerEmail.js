@@ -15,11 +15,15 @@ const CustomerEmail = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: Customer, 
-        key: 'Id',
+        model: Customer,
+        key: "Id",
       },
     },
     Subject: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    EmailStatus: {
       type: DataTypes.STRING,
       allowNull: false,
     },
