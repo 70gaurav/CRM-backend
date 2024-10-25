@@ -2,15 +2,15 @@
   "swagger": "2.0",
   "info": {
     "title": "Fav CRM",
-    "description": "Description",
+    "description": "Api for  Fav CRM",
     "version": "1.0.0"
   },
   "host": "65.0.180.57:8080",
   "basePath": "/",
   "tags": [
     {
-      "name": "CRM API",
-      "description": "Endpoints related to CRM"
+      "name": "CRM api",
+      "description": "App api"
     }
   ],
   "schemes": [
@@ -57,7 +57,7 @@
             "description": "Internal Server Error"
           }
         },
-        "tags": ["CRM API"]
+        "tags": ["CRM api"]
       }
     },
     "/api/StoreImapDetails": {
@@ -100,7 +100,7 @@
             "description": "Internal Server Error"
           }
         },
-        "tags": ["CRM API"]
+        "tags": ["CRM api"]
       }
     },
     "/api/CustomerList/{storeId}": {
@@ -125,7 +125,7 @@
             "description": "Internal Server Error"
           }
         },
-        "tags": ["CRM API"]
+        "tags": ["CRM api"]
       }
     },
     "/api/CustomerDetails/{customerId}": {
@@ -147,7 +147,7 @@
             "description": "Internal Server Error"
           }
         },
-        "tags": ["CRM API"]
+        "tags": ["CRM api"]
       }
     },
     "/api/OrderSummary/{id}": {
@@ -172,7 +172,78 @@
             "description": "Internal Server Error"
           }
         },
-        "tags": ["CRM API"]
+        "tags": ["CRM api"]
+      }
+    },
+    "/api/SendEmail": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "example": "any"
+                },
+                "Subject": {
+                  "example": "any"
+                },
+                "Body": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": ["CRM api"]
+      }
+    },
+    "/api/AddNote": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CustomerEmailId": {
+                  "example": "any"
+                },
+                "Note": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": ["CRM api"]
       }
     }
   }

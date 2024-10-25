@@ -1,13 +1,25 @@
 import express from "express";
-import { addStoreValidation, addStoreSettingsValidation } from "../middlewares/validators/storeValidator.js";
+import {
+  addStoreValidation,
+  addStoreSettingsValidation,
+} from "../middlewares/validators/storeValidator.js";
+import { emailValidation } from "../middlewares/validators/emailValidator.js";
+import { notesValidation } from "../middlewares/validators/notesValidation.js";
+
 const router = express.Router();
 
 import { addStore, addStoreSettings } from "../controllers/storeController.js";
+
 import {
   getCustomers,
   getCustomerById,
 } from "../controllers/customerController.js";
+
+import { addNote } from "../controllers/notesController.js";
+
 import { getOrders } from "../controllers/orderController.js";
+
+import { emailService } from "../controllers/emailController.js";
 
 //add store information
 router.post("/StoreSettings", addStoreValidation, addStore);
@@ -23,5 +35,11 @@ router.get("/CustomerDetails/:customerId", getCustomerById);
 
 //get orders by customer id
 router.get("/OrderSummary/:id", getOrders);
+
+//send email to customer
+router.post("/SendEmail", emailValidation, emailService);
+
+//add note
+router.post("/AddNote", notesValidation, addNote);
 
 export default router;

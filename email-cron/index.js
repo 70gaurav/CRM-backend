@@ -112,6 +112,7 @@ const processStoreEmails = async (store) => {
         const dateInIST = new Date(dateInUTC.getTime() + istOffset);
 
         const lastFetchedDate = store.LastFetchedDate ? dateInIST : null;
+
         console.log("lastfetchedDate", lastFetchedDate);
         // Fetch emails from Inbox
         const inboxEmails = await fetchEmailsFromFolder(
@@ -126,6 +127,9 @@ const processStoreEmails = async (store) => {
           "SENT ITEMS",
           lastFetchedDate
         );
+
+        console.log("inbox", inboxEmails);
+        console.log("sentBox", sentEmails);
 
         // Process Inbox emails (check 'from' email)
         for (const emailData of inboxEmails) {
