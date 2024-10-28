@@ -5,6 +5,7 @@ import logger from "../lib/logger.js";
 const Customer = db.Customer;
 const Store = db.Store;
 const CustomerEmail = db.CustomerEmail;
+const Notes = db.Notes;
 
 config();
 
@@ -50,7 +51,15 @@ export const getCustomerById = async (req, res) => {
           model: CustomerEmail,
           foreignKey: "CustomerId",
           required: false,
-          exclude: ["CreatedAt", "UpdatedAt"],
+          attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
+          include: [
+            {
+              model: Notes,
+              foreignKey: "CustomerEmailId",
+              required: false,
+              attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
+            },
+          ],
         },
       ],
       order: [[CustomerEmail, "DateTime", "DESC"]],
@@ -60,12 +69,13 @@ export const getCustomerById = async (req, res) => {
       return res.status(200).send({ message: "No customer found" });
     }
 
-    return res
-      .status(200)
-      .send({ message: "request success", data: customerData });
+    return res.status(200).send({
+      message: "request success",
+      data: customerData,
+    });
   } catch (error) {
     logger.error("error in function getCustomerById", error);
     console.log(error);
-    return res.status(500).send({ message: error });
+    return res.status(500).send({ message: "internal server error" });
   }
 };
