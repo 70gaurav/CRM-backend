@@ -77,7 +77,7 @@ export const getCustomerById = async (req, res) => {
     return res.status(200).send({
       message: "request success",
       data: customerData,
-      userEmail: userEmail.UserEmailId,
+      userEmail: userData.UserEmailId,
     });
   } catch (error) {
     logger.error("error in function getCustomerById", error);
