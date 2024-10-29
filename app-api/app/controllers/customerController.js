@@ -70,14 +70,14 @@ export const getCustomerById = async (req, res) => {
       return res.status(200).send({ message: "No customer found" });
     }
 
-    const UserEmailId = await StoreSettings.findOne({
-      where: { StoreId: customerData.StoreId },
+    const userData = await StoreSettings.findOne({
+      where: { StoreId: customerData.StoreId },attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
     });
 
     return res.status(200).send({
       message: "request success",
       data: customerData,
-      userEmail: UserEmailId,
+      userEmail: userEmail.UserEmailId,
     });
   } catch (error) {
     logger.error("error in function getCustomerById", error);
