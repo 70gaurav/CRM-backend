@@ -5,7 +5,7 @@ const doc = {
     title: "Fav CRM",
     description: "Api for  Fav CRM",
   },
-  host: "65.0.180.57:8080",
+  host: "13.200.242.122:8080",
   tags: [
     // by default: empty Array
     {
