@@ -5,7 +5,7 @@ const Notes = db.Notes;
 
 //add note to db
 export const addNote = async (req, res) => {
-  const { CustomerEmailId, Note } = req.body;
+  const { CustomerEmailId, Title, Note } = req.body;
 
   const errors = validationResult(req);
 
@@ -20,9 +20,10 @@ export const addNote = async (req, res) => {
   try {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
-    console.log(formattedDate)
+    console.log(formattedDate);
     const data = await Notes.create({
       CustomerEmailId,
+      Title,
       DateTime: formattedDate,
       Note,
     });

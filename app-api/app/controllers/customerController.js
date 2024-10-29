@@ -6,6 +6,7 @@ const Customer = db.Customer;
 const Store = db.Store;
 const CustomerEmail = db.CustomerEmail;
 const Notes = db.Notes;
+const StoreSettings = db.StoreSettings;
 
 config();
 
@@ -69,9 +70,14 @@ export const getCustomerById = async (req, res) => {
       return res.status(200).send({ message: "No customer found" });
     }
 
+    const UserEmailId = await StoreSettings.findOne({
+      where: { StoreId: customerData.StoreId },
+    });
+
     return res.status(200).send({
       message: "request success",
       data: customerData,
+      userEmail: UserEmailId,
     });
   } catch (error) {
     logger.error("error in function getCustomerById", error);

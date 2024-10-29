@@ -14,6 +14,10 @@ const Notes = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    Title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     Note: {
       type: DataTypes.STRING,
       allowNull: false,
