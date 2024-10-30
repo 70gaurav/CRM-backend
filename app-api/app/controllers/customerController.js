@@ -44,6 +44,27 @@ export const getCustomerById = async (req, res) => {
   const { customerId } = req.params;
 
   try {
+    const emails = await CustomerEmail.findAll({
+      where: { CustomerId: customerId },
+      order: [["DateTime", "DESC"]],
+    });
+
+    if (emails.length > 0) {
+      const FirstContacted = emails[emails.length - 1].DateTime;
+      const LastContacted = emails[0].DateTime;
+
+      await Customer.update(
+        {
+          FirstContacted,
+          LastContacted,
+        },
+        {
+          where: { Id: customerId },
+        }
+      );
+    }
+
+    
     const customerData = await Customer.findOne({
       where: { Id: customerId },
       attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
@@ -71,7 +92,8 @@ export const getCustomerById = async (req, res) => {
     }
 
     const userData = await StoreSettings.findOne({
-      where: { StoreId: customerData.StoreId },attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
+      where: { StoreId: customerData.StoreId },
+      attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
     });
 
     return res.status(200).send({

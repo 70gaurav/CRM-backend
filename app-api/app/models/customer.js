@@ -12,7 +12,7 @@ const Customer = sequelize.define(
     },
     CustomerId: {
       type: DataTypes.INTEGER,
-     
+
       allowNull: false,
     },
     StoreId: {
@@ -68,6 +68,10 @@ const Customer = sequelize.define(
       allowNull: true,
     },
     FirstContacted: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    LastContacted: {
       type: DataTypes.DATE,
       allowNull: true,
     },
