@@ -5,7 +5,7 @@
     "description": "Api for  Fav CRM",
     "version": "1.0.0"
   },
-  "host": "13.200.242.122:8080",
+  "host": "favcrm.softwareexato.com",
   "basePath": "/",
   "tags": [
     {
@@ -14,7 +14,7 @@
     }
   ],
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api/StoreSettings": {
