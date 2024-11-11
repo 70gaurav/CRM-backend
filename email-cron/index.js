@@ -123,17 +123,18 @@ const processStoreEmails = async (store) => {
          
         console.log("inbox", store.UserEmailId, inboxEmails)
         // Fetch emails from Sent folder
-        const sentEmails = await fetchEmailsFromFolder(
-          imap,
-          "SENT ITEMS",
-          lastFetchedDate
-        );
+        // const sentEmails = await fetchEmailsFromFolder(
+        //   imap,
+        //   "SENT ITEMS",
+        //   lastFetchedDate
+        // );
 
-        console.log("inbox", inboxEmails);
-        console.log("sentBox", sentEmails);
+        // console.log("inbox", inboxEmails);
+        // console.log("sentBox", sentEmails);
 
         // Process Inbox emails (check 'from' email)
         for (const emailData of inboxEmails) {
+          console.log("in save data")
           const customer = await Customer.findOne({
             where: {
               EmailId: emailData.from,
@@ -162,32 +163,32 @@ const processStoreEmails = async (store) => {
         }
 
         // Process Sent emails (check 'to' email)
-        for (const emailData of sentEmails) {
-          const customer = await Customer.findOne({
-            where: {
-              EmailId: emailData.to,
-            },
-          });
+        // for (const emailData of sentEmails) {
+        //   const customer = await Customer.findOne({
+        //     where: {
+        //       EmailId: emailData.to,
+        //     },
+        //   });
 
-          if (customer) {
-            await CustomerEmail.create({
-              CustomerId: customer.Id,
-              Subject: emailData.subject,
-              Content: emailData.body,
-              DateTime: emailData.date,
-              EmailStatus: "sent",
-            });
+        //   if (customer) {
+        //     await CustomerEmail.create({
+        //       CustomerId: customer.Id,
+        //       Subject: emailData.subject,
+        //       Content: emailData.body,
+        //       DateTime: emailData.date,
+        //       EmailStatus: "sent",
+        //     });
 
-            logger.info(
-              `Email saved for customer ID: ${customer.Id} from sent emails.`
-            );
-          } else {
-            logger.info(
-              `No matching customer found for sent email in store ${store.SettingsId}:`,
-              emailData.to
-            );
-          }
-        }
+        //     logger.info(
+        //       `Email saved for customer ID: ${customer.Id} from sent emails.`
+        //     );
+        //   } else {
+        //     logger.info(
+        //       `No matching customer found for sent email in store ${store.SettingsId}:`,
+        //       emailData.to
+        //     );
+        //   }
+        // }
 
         // Update LastFetchedDate to the current date
         store.LastFetchedDate = new Date();
@@ -225,7 +226,7 @@ const getEmails = async () => {
 
     for (const setting of settings) {
       try {
-        console.log("setting:", setting);
+        // console.log("setting:", setting);
         await processStoreEmails(setting);
       } catch (error) {
         logger.error(
@@ -235,7 +236,7 @@ const getEmails = async () => {
       }
     }
   } catch (ex) {
-    console.log("ex",ex)
+    // console.log("ex",ex)
     logger.error("An error occurred while fetching stores:", ex);
   }
 };
