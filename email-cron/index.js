@@ -194,6 +194,7 @@ const processStoreEmails = async (store) => {
         imap.end();
         resolve();
       } catch (error) {
+        console.log("error:", error);
         logger.error(
           `Error processing emails for store ${store.SettingsId}:`,
           error
@@ -222,6 +223,7 @@ const getEmails = async () => {
 
     for (const setting of settings) {
       try {
+        console.log("setting:", setting);
         await processStoreEmails(setting);
       } catch (error) {
         logger.error(
@@ -231,6 +233,7 @@ const getEmails = async () => {
       }
     }
   } catch (ex) {
+    console.log("ex",ex)
     logger.error("An error occurred while fetching stores:", ex);
   }
 };
