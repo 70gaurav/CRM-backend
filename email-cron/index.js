@@ -148,11 +148,12 @@ const processStoreEmails = async (store) => {
               DateTime: emailData.date,
               EmailStatus: "received",
             });
-
+            console.log("email saved for", emailData.from)
             logger.info(
               `Email saved for customer ID: ${customer.Id} from inbox.`
             );
           } else {
+            console.log("error ")
             logger.info(
               `No matching customer found for inbox email in store ${store.SettingsId}:`,
               emailData.from
