@@ -120,7 +120,8 @@ const processStoreEmails = async (store) => {
           "INBOX",
           lastFetchedDate
         );
-
+         
+        console.log("inbox", store.UserEmailId, inboxEmails)
         // Fetch emails from Sent folder
         const sentEmails = await fetchEmailsFromFolder(
           imap,
