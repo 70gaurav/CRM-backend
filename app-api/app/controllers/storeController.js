@@ -2,11 +2,11 @@ import Store from "../models/store.js";
 import logger from "../lib/logger.js";
 import { validationResult } from "express-validator";
 import StoreSettings from "../models/storeSettings.js";
-import BigCommerce from 'node-bigcommerce';
+import BigCommerce from "node-bigcommerce";
 
 const bigCommerce = new BigCommerce({
-  clientId: "8qj6rrobyyvnnbxt31pfujmtvyoant2",
-  secret: "2736b0eef324f5e6dba276c9072dc2af08f8eaba5b168940ea262c4ddd26f8c1",
+  clientId: "e0mtvqzr4a4nkvj2ull1h9e5ibgjutp",
+  secret: "3c1d9ba573c720f5fe8d616d4f0f6fe686daa9c96ddae209ac4e4cefe29c7e22",
   callback: "https://favcrm.softwareexato.com/api/auth",
   responseType: "json",
 });
@@ -16,12 +16,13 @@ export const getStore = async (req, res, next) => {
   try {
     const data = await bigCommerce.authorize(req.query);
     // Successfully authorized, render the response
-    logger.info("storeData:", data)
-    res.render('integrations/auth', { title: 'Authorized!', data: data });
+    logger.info("storeData:", data);
+    // res.render('integrations/auth', { title: 'Authorized!', data: data });
+    res.status(200).send({ title: "Authorized!", data: data });
   } catch (error) {
     next(error); // Pass any errors to the error handling middleware
   }
-}
+};
 
 //function to add store
 export const addStore = async (req, res) => {
