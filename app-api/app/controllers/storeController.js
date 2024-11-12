@@ -2,27 +2,25 @@ import Store from "../models/store.js";
 import logger from "../lib/logger.js";
 import { validationResult } from "express-validator";
 import StoreSettings from "../models/storeSettings.js";
-// import BigCommerce from "node-bigcommerce";
+import BigCommerce from 'node-bigcommerce';
 
-// const bigCommerce = new BigCommerce({
-//   clientId: "cxl3n94q9lkrdsy03nnc1zc2sxrsr1p",
-//   secret: "fde0dae4e86ca64e7b7db91445afe6904e4744ae0782525ee92f720fdd83e935",
-//   callback: "https://fav-frontend-one.vercel.app/",
-//   responseType: "json",
-// });
+const bigCommerce = new BigCommerce({
+  clientId: "cxl3n94q9lkrdsy03nnc1zc2sxrsr1p",
+  secret: "fde0dae4e86ca64e7b7db91445afe6904e4744ae0782525ee92f720fdd83e935",
+  callback: "https://fav-frontend-one.vercel.app/",
+  responseType: "json",
+});
 
 //function to get store info
-export const getStore = async (req, res) => {
+export const getStore = async (req, res, next) => {
   try {
-   
-    console.log(req.body);
-    logger.info("storeData:", req.body)
-    return res.status(200).send({message: "request success", data: req.body})
-    // res.render('integrations/auth', { title: 'Authorized!', data });
+    const data = await bigCommerce.authorize(req.query);
+    // Successfully authorized, render the response
+    res.render('integrations/auth', { title: 'Authorized!', data: data });
   } catch (error) {
-    // next(error);
+    next(error); // Pass any errors to the error handling middleware
   }
-};
+}
 
 //function to add store
 export const addStore = async (req, res) => {
