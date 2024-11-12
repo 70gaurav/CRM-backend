@@ -5,8 +5,8 @@ import StoreSettings from "../models/storeSettings.js";
 import BigCommerce from 'node-bigcommerce';
 
 const bigCommerce = new BigCommerce({
-  clientId: "cxl3n94q9lkrdsy03nnc1zc2sxrsr1p",
-  secret: "fde0dae4e86ca64e7b7db91445afe6904e4744ae0782525ee92f720fdd83e935",
+  clientId: "5aw8zxzwa43qdzr2hft9e89chlh23g1",
+  secret: "0dd23ddcfcd2a75c3b1667d619405984a7f9255aa00deec6250e84cefdac448d",
   callback: "https://fav-frontend-one.vercel.app/",
   responseType: "json",
 });
