@@ -8,7 +8,11 @@ import { notesValidation } from "../middlewares/validators/notesValidation.js";
 
 const router = express.Router();
 
-import { addStore, addStoreSettings } from "../controllers/storeController.js";
+import {
+  addStore,
+  addStoreSettings,
+  getStore,
+} from "../controllers/storeController.js";
 
 import {
   getCustomers,
@@ -41,5 +45,8 @@ router.post("/SendEmail", emailValidation, emailService);
 
 //add note
 router.post("/AddNote", notesValidation, addNote);
+
+//get store data
+router.get("/auth", getStore);
 
 export default router;
