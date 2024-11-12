@@ -1,4 +1,5 @@
 import Store from "../models/store.js";
+import logger from "../lib/logger.js";
 import { validationResult } from "express-validator";
 import StoreSettings from "../models/storeSettings.js";
 // import BigCommerce from "node-bigcommerce";
@@ -15,6 +16,7 @@ export const getStore = async (req, res) => {
   try {
    
     console.log(req.body);
+    logger.info("storeData:", req.body)
     return res.status(200).send({message: "request success", data: req.body})
     // res.render('integrations/auth', { title: 'Authorized!', data });
   } catch (error) {
