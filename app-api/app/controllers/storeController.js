@@ -21,7 +21,7 @@ export const getStore = async (req, res, next) => {
 
     const StoreHash = data.context.split("/")[1]
     const CustomerEmail = data.user.username
-    res.render({data:data, storeData:{AccessToken,StoreHash, CustomerEmail}})
+    res.render('integrations/auth', { title: 'Authorized!', data, AccessToken, StoreHash, CustomerEmail });
     // res.redirect("https://fav-frontend-one.vercel.app/");
   } catch (error) {
     next(error); // Pass any errors to the error handling middleware
