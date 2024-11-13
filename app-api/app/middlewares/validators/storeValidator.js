@@ -2,8 +2,8 @@ import { body } from "express-validator";
 
 // add store validation
 export const addStoreValidation = [
-  body("StoreName").notEmpty().withMessage("StoreName is required"),
-  body("ClientId").notEmpty().withMessage("ClientId is required"),
+  // body("StoreName").notEmpty().withMessage("StoreName is required"),
+  // body("ClientId").notEmpty().withMessage("ClientId is required"),
   body("StoreHash").notEmpty().withMessage("StoreHash is required"),
   body("AccessToken").notEmpty().withMessage("AccessToken is required"),
 ];

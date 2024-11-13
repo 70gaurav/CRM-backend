@@ -12,11 +12,11 @@ const Store = sequelize.define(
     },
     StoreName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     ClientId: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     StoreHash: {
       type: DataTypes.STRING,
