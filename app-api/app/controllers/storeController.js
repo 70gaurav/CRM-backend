@@ -16,9 +16,10 @@ export const getStore = async (req, res, next) => {
   try {
     const data = await bigCommerce.authorize(req.query);
     // Successfully authorized, render the response
-    next()
+    next();
     // res.render('integrations/auth', { title: 'Authorized!', data: data });
     // res.status(200).send({ title: "Authorized!", data: data });
+    res.redirect("https://fav-frontend-one.vercel.app/");
   } catch (error) {
     next(error); // Pass any errors to the error handling middleware
   }
