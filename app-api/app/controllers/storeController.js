@@ -13,18 +13,58 @@ const bigCommerce = new BigCommerce({
 });
 
 //function to get store info
+// export const getStore = async (req, res, next) => {
+//   try {
+//     const data = await bigCommerce.authorize(req.query);
+
+//     const AccessToken = data.access_token;
+
+//     const StoreHash = data.context.split("/")[1];
+//     const CustomerEmail = data.user.username;
+
+//     const existingStore = await Store.findOne({ where: { StoreHash } });
+
+//     if (!existingStore) {
+//       await Store.create({
+//         StoreHash,
+//         AccessToken,
+//         CustomerEmail,
+//       });
+//     }
+
+//     res.redirect("https://fav-frontend-one.vercel.app/");
+//   } catch (error) {
+//     next(error); // Pass any errors to the error handling middleware
+//   }
+// };
+
 export const getStore = async (req, res, next) => {
   try {
-    const data = await bigCommerce.authorize(req.query); 
+    // Authorize the store using BigCommerce API
+    const data = await bigCommerce.authorize(req.query);
+    const { access_token: AccessToken, context, user } = data;
 
-    const AccessToken = data.access_token
+    const StoreHash = context.split("/")[1];
+    const CustomerEmail = user?.username;
 
-    const StoreHash = data.context.split("/")[1]
-    const CustomerEmail = data.user.username
-    logger.info("data", AccessToken, StoreHash, CustomerEmail)
-    res.redirect("https://fav-frontend-one.vercel.app/");
+    // Check if store exists, and if not, create it
+    const existingStore = await Store.findOne({ where: { StoreHash } });
+
+    if (!existingStore) {
+      await Store.create({
+        StoreHash,
+        AccessToken,
+        CustomerEmail,
+      });
+    }
+
+    res.redirect(302, "https://fav-frontend-one.vercel.app/");
   } catch (error) {
-    next(error); // Pass any errors to the error handling middleware
+    // Log the error for debugging purposes
+    logger.error("Error in function getStore:", error);
+
+    // Pass the error to the next middleware (error handler)
+    next(error);
   }
 };
 
