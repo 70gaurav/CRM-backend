@@ -2,11 +2,12 @@ import Store from "../models/store.js";
 import logger from "../lib/logger.js";
 import { validationResult } from "express-validator";
 import StoreSettings from "../models/storeSettings.js";
+import { config } from "dotenv";
 import BigCommerce from "node-bigcommerce";
 
 const bigCommerce = new BigCommerce({
-  clientId: "e0mtvqzr4a4nkvj2ull1h9e5ibgjutp",
-  secret: "3c1d9ba573c720f5fe8d616d4f0f6fe686daa9c96ddae209ac4e4cefe29c7e22",
+  clientId: process.env.CLIENTID,
+  secret: process.env.SECRET,
   callback: "https://favcrm.softwareexato.com/api/auth",
   responseType: "json",
 });
@@ -14,12 +15,14 @@ const bigCommerce = new BigCommerce({
 //function to get store info
 export const getStore = async (req, res, next) => {
   try {
-    const data = await bigCommerce.authorize(req.query);
-    // Successfully authorized, render the response
-    next();
-    // res.render('integrations/auth', { title: 'Authorized!', data: data });
-    // res.status(200).send({ title: "Authorized!", data: data });
-    res.redirect("https://fav-frontend-one.vercel.app/");
+    const data = await bigCommerce.authorize(req.query); 
+
+    const AccessToken = data.access_token
+
+    const StoreHash = data.context.split("/")[1]
+    const CustomerEmail = data.user.username
+    res.render({data:data, storeData:{AccessToken,StoreHash, CustomerEmail}})
+    // res.redirect("https://fav-frontend-one.vercel.app/");
   } catch (error) {
     next(error); // Pass any errors to the error handling middleware
   }
