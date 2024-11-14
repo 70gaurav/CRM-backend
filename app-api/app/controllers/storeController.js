@@ -71,8 +71,7 @@ export const getStore = async (req, res, next) => {
 //function to add store
 export const addStore = async (req, res) => {
   try {
-    const { StoreName, ClientId, StoreHash, AccessToken, CustomerEmail } =
-      req.body;
+    const { StoreHash, AccessToken, CustomerEmail } = req.body;
 
     const errors = validationResult(req);
 
@@ -84,15 +83,26 @@ export const addStore = async (req, res) => {
       return res.status(400).json({ message: errorMessages });
     }
 
-    const data = await Store.create({
-      StoreName,
-      ClientId,
-      StoreHash,
-      AccessToken,
-      CustomerEmail,
-    });
+    const existingStore = await Store.findOne({ where: { StoreHash } });
 
-    res.status(200).send({ message: "store added", data: data });
+    if (!existingStore) {
+      const data = await Store.create({
+        StoreHash,
+        AccessToken,
+        CustomerEmail,
+      });
+
+      res.status(200).send({ message: "store added", data: data });
+    }
+
+    // const data = await Store.create({
+    //   // StoreName,
+    //   // ClientId,
+    //   StoreHash,
+    //   AccessToken,
+    //   CustomerEmail,
+    // });
+    res.status(200).send({ message: "store added", data: existingStore });
   } catch (error) {
     logger.error("error in function addStore", error);
     return res.status(500).send({ message: error });
