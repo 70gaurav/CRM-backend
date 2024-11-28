@@ -3,7 +3,7 @@ import logger from "../lib/logger.js";
 import { validationResult } from "express-validator";
 import StoreSettings from "../models/storeSettings.js";
 import { config } from "dotenv";
-import BigCommerce from "node-bigcommerce";
+// import BigCommerce from "node-bigcommerce";
 
 // const bigCommerce = new BigCommerce({
 //   clientId: process.env.CLIENTID,
@@ -38,35 +38,35 @@ import BigCommerce from "node-bigcommerce";
 //   }
 // };
 
-export const getStore = async (req, res, next) => {
-  try {
-    // Authorize the store using BigCommerce API
-    const data = await bigCommerce.authorize(req.query);
-    const { access_token: AccessToken, context, user } = data;
+// export const getStore = async (req, res, next) => {
+//   try {
+//     // Authorize the store using BigCommerce API
+//     const data = await bigCommerce.authorize(req.query);
+//     const { access_token: AccessToken, context, user } = data;
 
-    const StoreHash = context.split("/")[1];
-    const CustomerEmail = user?.username;
+//     const StoreHash = context.split("/")[1];
+//     const CustomerEmail = user?.username;
 
-    // Check if store exists, and if not, create it
-    const existingStore = await Store.findOne({ where: { StoreHash } });
+//     // Check if store exists, and if not, create it
+//     const existingStore = await Store.findOne({ where: { StoreHash } });
 
-    if (!existingStore) {
-      await Store.create({
-        StoreHash,
-        AccessToken,
-        CustomerEmail,
-      });
-    }
+//     if (!existingStore) {
+//       await Store.create({
+//         StoreHash,
+//         AccessToken,
+//         CustomerEmail,
+//       });
+//     }
 
-    res.redirect(302, "https://fav-frontend-one.vercel.app/");
-  } catch (error) {
-    // Log the error for debugging purposes
-    logger.error("Error in function getStore:", error);
+//     res.redirect(302, "https://fav-frontend-one.vercel.app/");
+//   } catch (error) {
+//     // Log the error for debugging purposes
+//     logger.error("Error in function getStore:", error);
 
-    // Pass the error to the next middleware (error handler)
-    next(error);
-  }
-};
+//     // Pass the error to the next middleware (error handler)
+//     next(error);
+//   }
+// };
 
 //function to add store
 export const addStore = async (req, res) => {

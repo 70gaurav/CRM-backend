@@ -11,7 +11,7 @@ const router = express.Router();
 import {
   addStore,
   addStoreSettings,
-  getStore,
+  // getStore,
 } from "../controllers/storeController.js";
 
 import {
@@ -23,7 +23,7 @@ import { addNote } from "../controllers/notesController.js";
 
 import { getOrders } from "../controllers/orderController.js";
 
-import { emailService } from "../controllers/emailController.js";
+import { emailService, newConversation } from "../controllers/emailController.js";
 
 //add store information
 router.post("/StoreSettings", addStoreValidation, addStore);
@@ -43,10 +43,13 @@ router.get("/OrderSummary/:id", getOrders);
 //send email to customer
 router.post("/SendEmail", emailValidation, emailService);
 
+//start new conversation
+router.post("/NewEmail", newConversation);
+
 //add note
 router.post("/AddNote", notesValidation, addNote);
 
 //get store data
-router.get("/auth", getStore);
+// router.get("/auth", getStore);
 
 export default router;
