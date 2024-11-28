@@ -1,6 +1,7 @@
 import sequelize from "./index.js";
 import { DataTypes } from "sequelize";
 import Customer from "./customer.js";
+import TopicMaster from "./topicMaster.js";
 
 const CustomerEmail = sequelize.define(
   "customerEmails",
@@ -17,6 +18,14 @@ const CustomerEmail = sequelize.define(
       references: {
         model: Customer,
         key: "Id",
+      },
+    },
+    TopicId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: TopicMaster,
+        key: "TopicId",
       },
     },
     Subject: {

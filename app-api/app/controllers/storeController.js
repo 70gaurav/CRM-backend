@@ -5,12 +5,12 @@ import StoreSettings from "../models/storeSettings.js";
 import { config } from "dotenv";
 import BigCommerce from "node-bigcommerce";
 
-const bigCommerce = new BigCommerce({
-  clientId: process.env.CLIENTID,
-  secret: process.env.SECRET,
-  callback: "https://favcrm.softwareexato.com/api/auth",
-  responseType: "json",
-});
+// const bigCommerce = new BigCommerce({
+//   clientId: process.env.CLIENTID,
+//   secret: process.env.SECRET,
+//   callback: "https://favcrm.softwareexato.com/api/auth",
+//   responseType: "json",
+// });
 
 //function to get store info
 // export const getStore = async (req, res, next) => {

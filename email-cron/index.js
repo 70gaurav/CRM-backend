@@ -2,6 +2,7 @@ import Imap from "imap";
 import { simpleParser } from "mailparser";
 import Customer from "./models/customer.js";
 import CustomerEmail from "./models/customerEmail.js";
+import TopicMaster from "./models/topicMaster.js";
 import StoreSettings from "./models/storeSettings.js";
 import logger from "./lib/logger.js";
 
@@ -104,7 +105,7 @@ const processStoreEmails = async (store) => {
         const fetchedDate = store.LastFetchedDate
           ? store.LastFetchedDate
           : null;
-        console.log("fetchedDate", fetchedDate);
+        // console.log("fetchedDate", fetchedDate);
         const dateInUTC = new Date(fetchedDate);
 
         // Convert to IST
@@ -113,15 +114,15 @@ const processStoreEmails = async (store) => {
 
         const lastFetchedDate = store.LastFetchedDate ? dateInIST : null;
 
-        console.log("lastfetchedDate", lastFetchedDate);
+        // console.log("lastfetchedDate", lastFetchedDate);
         // Fetch emails from Inbox
         const inboxEmails = await fetchEmailsFromFolder(
           imap,
           "INBOX",
           lastFetchedDate
         );
-         
-        console.log("inbox", store.UserEmailId, inboxEmails)
+
+        console.log("inbox", store.UserEmailId, inboxEmails);
         // Fetch emails from Sent folder
         // const sentEmails = await fetchEmailsFromFolder(
         //   imap,
@@ -134,27 +135,57 @@ const processStoreEmails = async (store) => {
 
         // Process Inbox emails (check 'from' email)
         for (const emailData of inboxEmails) {
-          console.log("in save data")
+          console.log("in save data");
           const customer = await Customer.findOne({
             where: {
               EmailId: emailData.from,
             },
           });
 
+          // const subject = emailData.subject.split(":")[1];
+          // console.log("subject", subject);
+
           if (customer) {
-            await CustomerEmail.create({
-              CustomerId: customer.Id,
-              Subject: emailData.subject,
-              Content: emailData.body,
-              DateTime: emailData.date,
-              EmailStatus: "received",
+            const existingTopic = await TopicMaster.findOne({
+              where: {
+                CustomerId: customer.Id,
+                EmailSubject: emailData.subject,
+              },
             });
-            console.log("email saved for", emailData.from)
-            logger.info(
-              `Email saved for customer ID: ${customer.Id} from inbox.`
-            );
+
+            let topicId;
+
+            if (!existingTopic) {
+              const data = await TopicMaster.create({
+                CustomerId: customer.Id,
+                EmailSubject: emailData.subject,
+                DateOfFirstEmail: emailData.date,
+                DateOfLastCommunication: emailData.date,
+                Status: "Open",
+              });
+
+              topicId = data.TopicId;
+            } else {
+              topicId = existingTopic.TopicId;
+            }
+
+            try {
+              await CustomerEmail.create({
+                CustomerId: customer.Id,
+                Subject: emailData.subject,
+                Content: emailData.body,
+                DateTime: emailData.date,
+                EmailStatus: "received",
+                TopicId: topicId,
+              });
+              console.log("email saved for", emailData.from);
+              logger.info(
+                `Email saved for customer ID: ${customer.Id} from inbox.`
+              );
+            } catch (error) {
+              console.log("error", error);
+            }
           } else {
-            console.log("error ")
             logger.info(
               `No matching customer found for inbox email in store ${store.SettingsId}:`,
               emailData.from

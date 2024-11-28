@@ -1,10 +1,10 @@
 import sequelize from "./index.js";
 import { DataTypes } from "sequelize";
 
-const CustomerEmail = sequelize.define(
-  "customerEmails",
+const TopicMaster = sequelize.define(
+  "topicMaster",
   {
-    EmailId: {
+    TopicId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -12,34 +12,30 @@ const CustomerEmail = sequelize.define(
     },
     CustomerId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
-    TopicId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    Subject: {
+    EmailSubject: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    EmailStatus: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    DateTime: {
+    DateOfFirstEmail: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    Content: {
+    DateOfLastCommunication: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    Status: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
-    tableName: "customerEmails",
+    tableName: "topicMaster",
     createdAt: "CreatedAt",
     updatedAt: "UpdatedAt",
   }
 );
 
-export default CustomerEmail;
+export default TopicMaster;
