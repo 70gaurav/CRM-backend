@@ -6,3 +6,8 @@ export const emailValidation = [
   body("Subject").notEmpty().withMessage("Subject is required"),
   body("Body").notEmpty().withMessage("Body is required"),
 ];
+
+export const changeTopicStatusValidation = [
+  body("TopicId").notEmpty().withMessage("TopicId is required"),
+  body("Status").notEmpty().withMessage("Status is required"),
+]

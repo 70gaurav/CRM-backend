@@ -3,7 +3,7 @@ import {
   addStoreValidation,
   addStoreSettingsValidation,
 } from "../middlewares/validators/storeValidator.js";
-import { emailValidation } from "../middlewares/validators/emailValidator.js";
+import { emailValidation, changeTopicStatusValidation } from "../middlewares/validators/emailValidator.js";
 import { notesValidation } from "../middlewares/validators/notesValidation.js";
 
 const router = express.Router();
@@ -17,13 +17,19 @@ import {
 import {
   getCustomers,
   getCustomerById,
+  getCustomerConversation,
+  getEmailThread,
 } from "../controllers/customerController.js";
 
 import { addNote } from "../controllers/notesController.js";
 
 import { getOrders } from "../controllers/orderController.js";
 
-import { emailService, newConversation } from "../controllers/emailController.js";
+import {
+  changeTopicStatus,
+  emailService,
+  newConversation,
+} from "../controllers/emailController.js";
 
 //add store information
 router.post("/StoreSettings", addStoreValidation, addStore);
@@ -46,10 +52,16 @@ router.post("/SendEmail", emailValidation, emailService);
 //start new conversation
 router.post("/NewEmail", newConversation);
 
+//get customer conversation
+router.get("/GetCustomerConversation/:id", getCustomerConversation);
+
+//get email thread
+router.get("/GetEmailThread/:id", getEmailThread);
+
+//change topic status
+router.put("/ChangeTopicStatus", changeTopicStatusValidation, changeTopicStatus);
+
 //add note
 router.post("/AddNote", notesValidation, addNote);
-
-//get store data
-// router.get("/auth", getStore);
 
 export default router;

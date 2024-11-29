@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import db from "../models/modelAssociation.js";
 import logger from "../lib/logger.js";
+import TopicMaster from "../models/topicMaster.js";
 
 const Customer = db.Customer;
 const Store = db.Store;
@@ -64,7 +65,6 @@ export const getCustomerById = async (req, res) => {
       );
     }
 
-    
     const customerData = await Customer.findOne({
       where: { Id: customerId },
       attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
@@ -105,5 +105,137 @@ export const getCustomerById = async (req, res) => {
     logger.error("error in function getCustomerById", error);
     console.log(error);
     return res.status(500).send({ message: "internal server error" });
+  }
+};
+
+//get customer conversation
+export const getCustomerConversation = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.query;
+
+  if (!id || !status) {
+    return res.status(400).send({ message: "id and status are required" });
+  }
+
+  const topicWhereCondition = status !== "all" ? { Status: status } : {};
+
+  console.log(status);
+
+  try {
+    const conversationData = await Customer.findOne({
+      where: { Id: id },
+      attributes: {
+        exclude: [
+          "StoreId",
+          "CustomerId",
+          "EmailId",
+          "Phone",
+          "Company",
+          "EmailStatus",
+          "Country",
+          "TotalOrderPlaced",
+          "TotalOrderValue",
+          "TotalOrderQuantity",
+          "FirstOrderPlaced",
+          "LastOrderPlaced",
+          "FirstContacted",
+          "LastContacted",
+          "FirstSeenDate",
+          "SignedUp",
+          "CreatedAt",
+          "UpdatedAt",
+        ],
+      },
+      include: [
+        {
+          model: TopicMaster,
+          foreignKey: "CustomerId",
+          required: false,
+          where: topicWhereCondition,
+          attributes: {
+            exclude: ["CreatedAt", "UpdatedAt", "DateOfLastCommunication"],
+          },
+          include: [
+            {
+              model: CustomerEmail,
+              foreignKey: "TopicId",
+              required: false,
+              attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
+              order: [["DateTime", "ASC"]],
+              limit: 1,
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!conversationData) {
+      return res.status(400).send({ message: "data not found" });
+    }
+
+    return res
+      .status(200)
+      .send({ message: "request success", data: conversationData });
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).send({ message: "internal server error" });
+  }
+};
+
+//get email thread
+export const getEmailThread = async (req, res) => {
+  const { id } = req.params;
+  const { topicid } = req.query;
+
+  if (!id || !topicid) {
+    return res.status(400).send({ message: "id and topicid are required" });
+  }
+
+  try {
+    const emailThread = await Customer.findOne({
+      where: { Id: id },
+      attributes: {
+        exclude: ["CreatedAt", "UpdatedAt"],
+      },
+      include: [
+        {
+          model: TopicMaster,
+          foreignKey: "CustomerId",
+          required: false,
+          where: { TopicId: topicid },
+          attributes: {
+            exclude: ["CreatedAt", "UpdatedAt", "DateOfLastCommunication"],
+          },
+          include: [
+            {
+              model: CustomerEmail,
+              foreignKey: "TopicId",
+              required: false,
+              attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
+              order: [["DateTime", "DESC"]],
+              include: [
+                {
+                  model: Notes,
+                  foreignKey: "CustomerEmailId",
+                  required: false,
+                  attributes: { exclude: ["CreatedAt", "UpdatedAt"] },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!emailThread) {
+      return res.status(400).send({ message: "data not found" });
+    }
+
+    return res
+      .status(200)
+      .send({ message: "request success", data: emailThread });
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).send({ message: "internal server error" });
   }
 };

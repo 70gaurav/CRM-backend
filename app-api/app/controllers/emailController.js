@@ -108,10 +108,9 @@ export const newConversation = async (req, res) => {
   const existingSubject = await TopicMaster.findOne({
     where: {
       CustomerId: Id,
-      EmailSubject: sequelize.literal(`"EmailSubject" = '${Subject}'`),
+      EmailSubject: Subject,
     },
   });
-
 
   if (existingSubject) {
     return res.status(400).send({ message: "subject already exists" });
@@ -120,7 +119,7 @@ export const newConversation = async (req, res) => {
   const newTopic = await TopicMaster.create({
     EmailSubject: Subject,
     CustomerId: Id,
-    Status: "Open",
+    Status: "open",
     DateOfFirstEmail: new Date().toISOString(),
     DateOfLastCommunication: new Date().toISOString(),
   });
@@ -188,5 +187,37 @@ const sendEmail = async (
     console.log("Error sending email:", error);
     logger.error("Error sending email:", error);
     return { success: false, error };
+  }
+};
+
+//change topic status
+export const changeTopicStatus = async (req, res) => {
+  const { TopicId, Status } = req.body;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const errorMessages = errors
+      .array()
+      .map((error) => error.msg)
+      .join(" & ");
+    return res.status(400).json({ message: errorMessages });
+  }
+
+  try {
+    const topic = await TopicMaster.findOne({ where: { TopicId } });
+
+    if (!topic) {
+      return res.status(400).send({ message: "Topic not found" });
+    }
+
+    await topic.update({ Status: Status });
+
+    return res
+      .status(200)
+      .send({ message: "Topic status updated successfully" });
+  } catch (error) {
+    logger.error("error in change topic status", error);
+    return res.status(500).send({ message: "Internal Server Error" });
   }
 };

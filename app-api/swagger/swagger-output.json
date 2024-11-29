@@ -27,12 +27,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "StoreName": {
-                  "example": "any"
-                },
-                "ClientId": {
-                  "example": "any"
-                },
                 "StoreHash": {
                   "example": "any"
                 },
@@ -192,6 +186,140 @@
                   "example": "any"
                 },
                 "Body": {
+                  "example": "any"
+                },
+                "TopicId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": ["CRM api"]
+      }
+    },
+    "/api/NewEmail": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "example": "any"
+                },
+                "Subject": {
+                  "example": "any"
+                },
+                "Body": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": ["CRM api"]
+      }
+    },
+    "/api/GetCustomerConversation/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": ["CRM api"]
+      }
+    },
+    "/api/GetEmailThread/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "topicid",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": ["CRM api"]
+      }
+    },
+    "/api/ChangeTopicStatus": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "TopicId": {
+                  "example": "any"
+                },
+                "Status": {
                   "example": "any"
                 }
               }

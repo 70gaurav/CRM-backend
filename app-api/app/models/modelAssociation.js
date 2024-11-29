@@ -20,4 +20,10 @@ db.Customer.hasMany(db.CustomerEmail, { foreignKey: "CustomerId" });
 db.Notes.belongsTo(db.CustomerEmail, { foreignKey: "CustomerEmailId" });
 db.CustomerEmail.hasMany(db.Notes, { foreignKey: "CustomerEmailId" });
 
+db.TopicMaster.belongsTo(db.Customer, { foreignKey: "CustomerId" });
+db.Customer.hasMany(db.TopicMaster, { foreignKey: "CustomerId" });
+
+db.CustomerEmail.belongsTo(db.TopicMaster, { foreignKey: "TopicId" });
+db.TopicMaster.hasMany(db.CustomerEmail, { foreignKey: "TopicId" });
+
 export default db;
