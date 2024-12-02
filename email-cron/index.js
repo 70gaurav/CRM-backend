@@ -26,7 +26,6 @@ const getLastFetchedDate = (lastFetchedDate) => {
   return new Date(dateInUTC.getTime() + istOffset).toISOString();
 };
 
-// Fetch Emails from Folder
 const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
   return new Promise((resolve, reject) => {
     imap.openBox(folder, false, (err) => {
@@ -38,9 +37,10 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
       const searchCriteria = lastFetchedDate
         ? [["SINCE", lastFetchedDate]]
         : ["ALL"];
-      console.log("searchCriteria", searchCriteria, lastFetchedDate);
       logger.info(
-        `Fetching emails from ${folder} with criteria: ${searchCriteria}`
+        `Fetching emails from ${folder} with criteria: ${JSON.stringify(
+          searchCriteria
+        )}`
       );
 
       imap.search(searchCriteria, (err, results) => {
@@ -49,7 +49,7 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
           return reject(err);
         }
 
-        if (results.length === 0) {
+        if (!results || results.length === 0) {
           logger.info(`No emails found in ${folder}.`);
           return resolve([]);
         }
@@ -61,13 +61,13 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
           msg.on("body", (stream) => {
             simpleParser(stream, (err, parsed) => {
               if (err) {
-                logger.error(`Error parsing email:`, err);
+                logger.error("Error parsing email:", err);
                 return;
               }
 
               emails.push({
-                from: getEmailAddress(parsed.from.text.trim()),
-                to: getEmailAddress(parsed.to.text.trim()),
+                from: getEmailAddress(parsed.from?.text?.trim() || ""),
+                to: getEmailAddress(parsed.to?.text?.trim() || ""),
                 subject: cleanSubject(parsed.subject),
                 date: parsed.date || new Date(),
                 body: (parsed.text || parsed.html || "No Content")
@@ -93,7 +93,6 @@ const fetchEmailsFromFolder = async (imap, folder, lastFetchedDate) => {
   });
 };
 
-// Process Emails for a Store
 const processStoreEmails = async (store) => {
   const imapConfig = {
     user: store.UserEmailId,
@@ -101,9 +100,7 @@ const processStoreEmails = async (store) => {
     host: store.IMAP,
     port: 993,
     tls: true,
-    tlsOptions: {
-      rejectUnauthorized: false,
-    },
+    tlsOptions: { rejectUnauthorized: false },
     authTimeout: 3000,
   };
 
@@ -113,25 +110,29 @@ const processStoreEmails = async (store) => {
     imap.once("ready", async () => {
       try {
         const lastFetchedDate = getLastFetchedDate(store.LastFetchedDate);
-        console.log("fetchedDates", store.lastFetchedDate, lastFetchedDate);
         const inboxEmails = await fetchEmailsFromFolder(
           imap,
           "INBOX",
           lastFetchedDate
         );
 
-        console.log("INBOXEMAILS", inboxEmails);
-
         logger.info(
           `Total emails fetched for ${store.UserEmailId}: ${inboxEmails.length}`
         );
 
         for (const emailData of inboxEmails) {
-          const customer = await Customer.findOne({
-            where: { EmailId: emailData.from },
-          });
+          try {
+            const customer = await Customer.findOne({
+              where: { EmailId: emailData.from },
+            });
 
-          if (customer) {
+            if (!customer) {
+              logger.info(
+                `No matching customer found for email from ${emailData.from}`
+              );
+              continue;
+            }
+
             const existingTopic = await TopicMaster.findOne({
               where: {
                 CustomerId: customer.Id,
@@ -139,22 +140,16 @@ const processStoreEmails = async (store) => {
               },
             });
 
-            if(existingTopic){
-              await existingTopic.update({
-                DateOfLastCommunication:
-                emailData.date,
-              })
-            }
-
-            let topicId = existingTopic
-              ? existingTopic.TopicId
+            const topicId = existingTopic
+              ? (await existingTopic.update({
+                  DateOfLastCommunication: emailData.date,
+                })).TopicId
               : (
                   await TopicMaster.create({
                     CustomerId: customer.Id,
                     EmailSubject: emailData.subject,
                     DateOfFirstEmail: emailData.date,
-                    DateOfLastCommunication:
-                      emailData.date,
+                    DateOfLastCommunication: emailData.date,
                     Status: "open",
                   })
                 ).TopicId;
@@ -167,10 +162,14 @@ const processStoreEmails = async (store) => {
               EmailStatus: "received",
               TopicId: topicId,
             });
-            logger.info(`Saved email for customer ${customer.Id}`);
-          } else {
+
             logger.info(
-              `No matching customer for email from ${emailData.from}`
+              `Saved email for customer ${customer.Id}, topic ${topicId}`
+            );
+          } catch (error) {
+            logger.error(
+              `Error processing email ${emailData.subject} for store ${store.SettingsId}:`,
+              error
             );
           }
         }
@@ -204,25 +203,25 @@ const processStoreEmails = async (store) => {
   });
 };
 
-// Main Function to Get Emails
 const getEmails = async () => {
   try {
     const settings = await StoreSettings.findAll();
 
     for (const setting of settings) {
-      try {
-        await processStoreEmails(setting);
-      } catch (error) {
+      await processStoreEmails(setting).catch((error) => {
         logger.error(
-          `Failed to process emails for store ${setting.SettingsId}:`,
+          `Error while processing store ${setting.UserEmailId}:`,
           error
         );
-      }
+      });
     }
+
+    logger.info("Completed processing all stores.");
   } catch (ex) {
     logger.error("An error occurred while fetching stores:", ex);
   }
 };
 
-// Start Email Fetching
 getEmails();
+
+
