@@ -411,10 +411,16 @@ const processEmails = async (store, emails) => {
         TopicId: topicId,
       });
 
+      console.log(
+        `Saved email for customer ${customer.Id}, topic ${topicId}`
+      );
+
       logger.info(
         `Saved email for customer ${customer.Id}, topic ${topicId}`
       );
     } catch (error) {
+      console.log(`Error processing email ${emailData.subject} for store ${store.SettingsId}:`,
+        error)
       logger.error(
         `Error processing email ${emailData.subject} for store ${store.SettingsId}:`,
         error
