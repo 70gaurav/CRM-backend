@@ -7,7 +7,7 @@ import logger from "../lib/logger.js";
 export const getOrders = async (req, res) => {
   const { id } = req.params;
 
-  const customerData = await Customer.findOne({ where: { CustomerId: id } });
+  const customerData = await Customer.findOne({ where: { Id: id } });
 
   if (!customerData) {
     return res
@@ -15,6 +15,7 @@ export const getOrders = async (req, res) => {
       .send({ message: "No customer found with the given id" });
   }
   const storeId = customerData.StoreId;
+  const customerId = customerData.CustomerId;
 
   const storeData = await Store.findOne({ where: { StoreId: storeId } });
 
@@ -27,7 +28,7 @@ export const getOrders = async (req, res) => {
   const { StoreHash, AccessToken } = storeData;
 
   try {
-    let url = `https://api.bigcommerce.com/stores/${StoreHash}/v2/orders?customer_id=${id}`;
+    let url = `https://api.bigcommerce.com/stores/${StoreHash}/v2/orders?customer_id=${customerId}`;
     const response = await axios.get(url, {
       headers: {
         "X-Auth-Token": AccessToken,

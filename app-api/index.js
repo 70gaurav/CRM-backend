@@ -17,13 +17,13 @@ const swaggerJson = JSON.parse(swaggerDocument);
 const app = express();
 
 // load certificates
-const options = {
-  key: fs.readFileSync("/etc/letsencrypt/live/softwareexato.com/privkey.pem"),
-  cert: fs.readFileSync(
-    "/etc/letsencrypt/live/softwareexato.com/fullchain.pem"
-  ),
-  //    ca: fs.readFileSync('/path/to/your/ca_bundle.crt'),  // Optional, only if your certificate provider requires it
-};
+// const options = {
+//   key: fs.readFileSync("/etc/letsencrypt/live/softwareexato.com/privkey.pem"),
+//   cert: fs.readFileSync(
+//     "/etc/letsencrypt/live/softwareexato.com/fullchain.pem"
+//   ),
+//   //    ca: fs.readFileSync('/path/to/your/ca_bundle.crt'),  // Optional, only if your certificate provider requires it
+// };
 
 app.use(cors());
 
@@ -38,11 +38,11 @@ app.all("*", (req, res) => {
   });
 });
 
-// app.listen(process.env.PORT, () => {
-//   console.log(`server listening on port ${process.env.PORT}`);
-// });
-https.createServer(options, app).listen(443, () => {
-  logger.debug("App started", {
-    started: "Server running at http://localhost:443",
-  });
+app.listen(process.env.PORT, () => {
+  console.log(`server listening on port ${process.env.PORT}`);
 });
+// https.createServer(options, app).listen(443, () => {
+//   logger.debug("App started", {
+//     started: "Server running at http://localhost:443",
+//   });
+// });

@@ -147,7 +147,9 @@ export const newConversation = async (req, res) => {
       EmailStatus: "sent",
     });
 
-    return res.status(200).send({ message: "Email sent successfully" });
+    return res
+      .status(200)
+      .send({ message: "Email sent successfully", data: { topicId: topicId } });
   } else {
     return res.status(500).send({ message: "Failed to send email" });
   }
@@ -193,7 +195,7 @@ const sendEmail = async (
 //change topic status
 export const changeTopicStatus = async (req, res) => {
   const { TopicId, Status } = req.body;
-
+  console.log(req.body);
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -211,12 +213,18 @@ export const changeTopicStatus = async (req, res) => {
       return res.status(400).send({ message: "Topic not found" });
     }
 
-    await topic.update({ Status: Status });
+    const result = await topic.update({ Status: Status });
 
-    return res
-      .status(200)
-      .send({ message: "Topic status updated successfully" });
+    console.log(result);
+    if (result) {
+      return res
+        .status(200)
+        .send({ message: "Topic status updated successfully" });
+    }
+
+    return res.status(500).send({ message: "something went wrong" });
   } catch (error) {
+    console.log("error in changetopic", error);
     logger.error("error in change topic status", error);
     return res.status(500).send({ message: "Internal Server Error" });
   }

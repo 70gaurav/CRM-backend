@@ -3,7 +3,10 @@ import {
   addStoreValidation,
   addStoreSettingsValidation,
 } from "../middlewares/validators/storeValidator.js";
-import { emailValidation, changeTopicStatusValidation } from "../middlewares/validators/emailValidator.js";
+import {
+  emailValidation,
+  changeTopicStatusValidation,
+} from "../middlewares/validators/emailValidator.js";
 import { notesValidation } from "../middlewares/validators/notesValidation.js";
 
 const router = express.Router();
@@ -59,7 +62,11 @@ router.get("/GetCustomerConversation/:id", getCustomerConversation);
 router.get("/GetEmailThread/:id", getEmailThread);
 
 //change topic status
-router.put("/ChangeTopicStatus", changeTopicStatusValidation, changeTopicStatus);
+router.post(
+  "/ChangeTopicStatus",
+  changeTopicStatusValidation,
+  changeTopicStatus
+);
 
 //add note
 router.post("/AddNote", notesValidation, addNote);

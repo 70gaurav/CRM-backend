@@ -14,6 +14,10 @@ config();
 export const getCustomers = async (req, res) => {
   const { storeId } = req.params;
 
+  if (!storeId) {
+    return res.status(400).send({ message: "please provide storeId" });
+  }
+
   try {
     const isCorrectStoreId = await Store.findOne({
       where: { StoreId: storeId },
@@ -43,6 +47,10 @@ export const getCustomers = async (req, res) => {
 
 export const getCustomerById = async (req, res) => {
   const { customerId } = req.params;
+
+  if(!customerId) {
+    return res.status(400).send({message:"please provide customer Id"})
+  }
 
   try {
     const emails = await CustomerEmail.findAll({
@@ -113,9 +121,10 @@ export const getCustomerConversation = async (req, res) => {
   const { id } = req.params;
   const { status } = req.query;
 
-  if (!id || !status) {
-    return res.status(400).send({ message: "id and status are required" });
-  }
+ if (!id || !status) {
+  console.log("Missing parameters - id:", id, "status:", status);
+  return res.status(400).send({ message: "id and status are required" });
+}
 
   const topicWhereCondition = status !== "all" ? { Status: status } : {};
 
@@ -187,6 +196,8 @@ export const getEmailThread = async (req, res) => {
   const { id } = req.params;
   const { topicid } = req.query;
 
+  console.log("in getEmailThread", id, topicid);
+
   if (!id || !topicid) {
     return res.status(400).send({ message: "id and topicid are required" });
   }
@@ -230,7 +241,7 @@ export const getEmailThread = async (req, res) => {
     if (!emailThread) {
       return res.status(400).send({ message: "data not found" });
     }
-
+    console.log(emailThread);
     return res
       .status(200)
       .send({ message: "request success", data: emailThread });
