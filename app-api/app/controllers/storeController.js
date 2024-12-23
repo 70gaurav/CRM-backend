@@ -31,7 +31,7 @@ export const addStore = async (req, res) => {
       res.status(200).send({ message: "store added", data: data });
     }
 
-    res.status(200).send({ message: "store added", data: existingStore });
+    return res.status(200).send({ message: "store added", data: existingStore });
   } catch (error) {
     logger.error("error in function addStore", error);
     return res.status(500).send({ message: error });
